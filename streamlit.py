@@ -158,11 +158,10 @@ if st.button("Analyze Video(s)", use_container_width=True):
             with st.spinner("Analyzing video(s) from files..."):
                 try:
                     summary_text = analyze_video_from_files(video_files, selected_model_name, generation_config, system_instruction_text, input_prompt_text)
-                    # with st.expander("View Summary with Copy Button"):
-                    #     st.code(summary_text, language='markdown')
-                    # Add a copy button using JavaScript
                     
                     st.markdown(summary_text)
+                    with st.expander("View raw markdown with Copy Button"):
+                        st.code(summary_text, language='markdown')
                 except Exception as e:
                     st.error(f"An error occurred: {e}")
         else:
@@ -173,7 +172,10 @@ if st.button("Analyze Video(s)", use_container_width=True):
             with st.spinner("Analyzing video from URL..."):
                 try:
                     summary_text = analyze_video_from_url(video_url, selected_model_name, generation_config, system_instruction_text, input_prompt_text)
+                    
                     st.markdown(summary_text) # Use st.markdown to render markdown
+                    with st.expander("View raw markdown with Copy Button"):
+                        st.code(summary_text, language='markdown')
                 except Exception as e:
                     st.error(f"An error occurred: {e}")
         else:
